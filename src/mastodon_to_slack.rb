@@ -41,11 +41,11 @@ def start_connection(request, http)
 
       # ruby style referring to https://github.com/airbnb/ruby/blob/master/README.md#newlines
       if DISCHARGE_MODE &&
-         (payload.dig("visibility") == "public" || payload.dig("visibility") == "unlisted") &&
+         # (payload.dig("visibility") == "public" || payload.dig("visibility") == "unlisted") &&
          (payload.dig("mentions").empty? || payload.dig("in_reply_to_account_id").nil?)
         post_to_slack(payload, request, http)
       elsif payload.dig("account", "acct") == ENV["MASTODON_USERNAME"] &&
-            (payload.dig("visibility") == "public" || payload.dig("visibility") == "unlisted") &&
+            # (payload.dig("visibility") == "public" || payload.dig("visibility") == "unlisted") &&
             (payload.dig("mentions").empty? || payload.dig("in_reply_to_account_id").nil?) &&
             !payload.dig("reblogged")
         post_to_slack(payload, request, http)
